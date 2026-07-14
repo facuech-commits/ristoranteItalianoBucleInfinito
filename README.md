@@ -1,6 +1,6 @@
 # El Bucle Infinito
 
-Aplicación Spring Boot full-stack para la gestión de reservas del restaurante italiano *El Bucle Infinito*.  
+Aplicación  Spring Boot full-stack para la gestión de reservas del restaurante italiano *El Bucle Infinito*.  
 Diseñada como **herramienta docente** para enseñar calidad de código con **SonarQube**: contiene malas prácticas intencionales (bugs, vulnerabilidades y code smells) que los alumnos deben descubrir analizando el proyecto.
 
 ---
