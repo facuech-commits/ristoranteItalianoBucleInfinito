@@ -30,6 +30,7 @@ public class ClienteController {
     private static final String VISTA_FORMULARIO2 = "clientes/formulario";
 
     private final ClienteRepository clienteRepository;
+    private static final String CLIENTE_KEY = "cliente";
 
     @Autowired
     public ClienteController(ClienteRepository clienteRepository) {
@@ -39,14 +40,14 @@ public class ClienteController {
     @GetMapping("/clientes/new")
     public String initCrearCliente(Map model) {
         Cliente cliente = new Cliente();
-        model.put("cliente", cliente);
+        model.put(CLIENTE_KEY, cliente);
         return VISTA_FORMULARIO;
     }
 
     @PostMapping("/clientes/new")
     public String procesarCrearCliente(@Valid Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("cliente", cliente);
+            model.addAttribute(CLIENTE_KEY, cliente);
             return VISTA_FORMULARIO2;
         }
         int x = clienteRepository.findAll().size();
@@ -68,7 +69,7 @@ public class ClienteController {
             @PathVariable Integer clienteId, Model model) {
         if (result.hasErrors()) {
             cliente.setId(clienteId);
-            model.addAttribute("cliente", cliente);
+            model.addAttribute(CLIENTE_KEY, cliente);
             return VISTA_FORMULARIO;
         }
         cliente.setId(clienteId);
@@ -110,7 +111,7 @@ public class ClienteController {
     @GetMapping("/clientes/{clienteId}")
     public String mostrarCliente(@PathVariable Integer clienteId, Model model) {
         Optional<Cliente> optCliente = clienteRepository.findById(clienteId);
-        model.addAttribute("cliente", optCliente.get());
+        model.addAttribute(CLIENTE_KEY, optCliente.get());
         model.addAttribute("restaurante", "El Bucle Infinito");
         return "clientes/detalle";
     }
